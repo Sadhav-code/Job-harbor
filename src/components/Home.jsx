@@ -171,10 +171,10 @@ function Home() {
       <div className="feat-job">
         <div className="feat-cont">
         <Slider {...settings}>
-        {feat.map((d)=>(
-          <div className='card-profile' >
+        {feat.map((d,idx)=>(
+          <div className='card-profile' key={idx}>
             <div className='feat-cont-img'>
-            <img className='feat-img' src={d.src} alt={d.alt} />
+            <img className='feat-img' src={d.src} key={idx} alt={d.alt} />
             </div>
             <div className='profile-card-text'>
             <dl className='profile-card-text'>
@@ -224,15 +224,15 @@ function Home() {
         <h3 className="headline">Testimonials</h3>
         <div className="Te-monials-cards">
         <Slider {...settings}>
-        {card.map((d)=>(
-          <div className='card-profile' >
+        {card.map((d,idx)=>(
+          <div className='card-profile' key={idx} >
             <div className='tesmon-img-cont'>
-            <img className='tes-mon-img' src={d.src} alt={d.alt} />
+            <img className='tes-mon-img' src={d.src} key={idx} alt={d.alt} />
             </div>
             <div className='profile-card-text'>
             <dl className='profile-card-text'>
             <dt>{d.name}</dt>
-            <dd>{d.review}</dd>
+            <dd >{d.review}</dd>
             </dl>
 
             </div>

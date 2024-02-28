@@ -1,6 +1,7 @@
-import React from 'react'
-import './css/Signup.css'
-import { useForm } from "react-hook-form"
+import React from 'react';
+import './css/Signup.css';
+import axios from 'axios';
+import { useForm } from "react-hook-form";
 
 function Signup() {
   const {
@@ -9,7 +10,11 @@ function Signup() {
     watch,
     formState: { errors, isSubmitting, isSubmitSuccessful },
   } = useForm()
-  const onSubmit = (data) => console.log(data)
+  const onSubmit = (data) => {axios.post("http://localhost:3000/register",data).then(res=>console.log(res));}
+   // const password = React.useRef({});
+  // password.current = watch("check-password", "");
+
+
   return (
     <div className='signup'>
       <div className="group">
@@ -38,13 +43,17 @@ function Signup() {
         <label htmlFor="cneu">Company Name or Education University:</label><br/>
         <input type="text"{...register("cneu",{required:true,minLength:{value:4,message:"Min Lenght is 4"} })}  className="in-text"  id="cneu" name="cneu" placeholder='Ex - Jaypee Insitiute of Technology' /><br/><br/>
         {errors.cneu && <div className='err'>{errors.cneu.message}</div>}
-        <label htmlFor="lname">Password:</label><br/>
-        <input type="password" {...register("password",{required:true,minLength:{value:6,message:"Min Length is 6"}})} className="in-text"  id="password" name="password" placeholder='password' /><br/><br/>
+        {/* <label htmlFor="lname">Password:</label><br/>
+        <input type="password" {...register("check-password",{required:true,minLength:{value:6,message:"Min Length is 6"}})} className="in-text"  id="check-password" name="check-password" placeholder='password' /><br/><br/>
+        {errors.password && <div className='err'>{errors.password.message}</div>} */}
+        <label htmlFor="lname">Re-Password:</label><br/>
+        <input type="text" {...register("password",{required:true,minLength:{value:6,message:"Min Length is 6"}})} className="in-text"  id="password" name="password" placeholder='password' /><br/><br/>
         {errors.password && <div className='err'>{errors.password.message}</div>}
         <button type='submit' value='Submit' className='filter-btn hbtn flt-grp'>Submit</button>
         <button type='reset' className='filter-btn hbtn flt-grp'>Reset</button>
         </form>
-
+        {/* code 
+        {required:true,validate:{value:value=> value===password.current,message:"Min Length is 6"}})} */}
      </div>
     </div>
   )
